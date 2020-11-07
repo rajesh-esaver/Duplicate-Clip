@@ -1,6 +1,12 @@
 from PIL import Image
 import imagehash
 import cv2
+from datetime import datetime
+
+
+def get_curr_time():
+    # print(datetime.now())
+    return datetime.now()
 
 
 class DuplicateClips:
@@ -21,10 +27,10 @@ class DuplicateClips:
 
         if int(major_ver) < 3:
             fps = self.curr_video.get(cv2.cv.CV_CAP_PROP_FPS)
-            print("Frames per second using video.get(cv2.cv.CV_CAP_PROP_FPS): {0}".format(fps))
+            # print("Frames per second using video.get(cv2.cv.CV_CAP_PROP_FPS): {0}".format(fps))
         else:
             fps = self.curr_video.get(cv2.CAP_PROP_FPS)
-            print("Frames per second using video.get(cv2.CAP_PROP_FPS) : {0}".format(fps))
+            # print("Frames per second using video.get(cv2.CAP_PROP_FPS) : {0}".format(fps))
         return int(fps)
 
     def find_frames_hash(self):
@@ -124,13 +130,17 @@ class DuplicateClips:
         return duplicate_clips_list
 
     def get_duplicate_clips_info(self):
+        print("\nProcessing Frames Started: {0}".format(get_curr_time()))
         matched_frame_clips_list = self.convert_matched_frames_to_clip_list()
         merged_frame_clips_list = self.merge_immediate_matching_frames(matched_frame_clips_list)
         duplicate_clips_list = self.convert_merged_frames_to_minutes_format(merged_frame_clips_list)
+        print("Processing Frames Completed: {0}".format(get_curr_time()))
+        print("\nDuplicate Clips:")
         for clip in duplicate_clips_list:
             print(clip)
 
     def print_vid_details(self):
+        print("\nVideo Details:")
         print("Frames per second: {0}".format(self.frames_per_second))
         print("Total Frames count : {0}".format(self.total_frames))
         print("Total Frames count video.get(cv2.CAP_PROP_FRAME_COUNT) : {0}".
@@ -145,8 +155,10 @@ class DuplicateClips:
 
 
 if __name__ == '__main__':
-    # video_to_check = "/home/rajesh/Downloads/temp/jab_pandu.mp4"
-    video_to_check = "/home/rajesh/Downloads/temp/sample-mp4-file_1.mp4"
+    video_to_check = "/home/rajesh/Downloads/temp/jab_pandu.mp4"
+    # video_to_check = "/home/rajesh/Downloads/temp/sample-mp4-file_1.mp4"
+    print("Hashing Process Started: {0}".format(get_curr_time()))
     duplicate_clip = DuplicateClips(video_to_check)
+    print("Hashing Process Completed: {0}".format(get_curr_time()))
     duplicate_clip.print_vid_details()
     duplicate_clip.get_duplicate_clips_info()
