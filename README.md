@@ -1,6 +1,6 @@
 ### About
 DuplicateClips.py can find the duplicate clips in the video,
- it returns the duplicate clip info in minutes format(MM:SS).
+ it returns the duplicate clip time info in minutes format(MM:SS).
 
 * To update requirements.txt file with latest pip packages: \
 pip freeze > requirements.txt
