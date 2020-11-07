@@ -1,0 +1,7 @@
+six
+pillow
+numpy
+scipy
+pywavelets
+imagehash
+opencv-python
