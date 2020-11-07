@@ -34,6 +34,14 @@ class DuplicateClips:
         return int(fps)
 
     def find_frames_hash(self):
+        """
+        matching frames by frame hash
+        dict[frame_hash] = [frame_count_no, 3, 4]
+        getting & returning the matched frames in list
+        [1,2,3, 21,22,23]
+        [6,7,8, 41,42,46]
+        ..
+        """
         frame_count = 0
 
         frames_dict = {}
@@ -65,6 +73,12 @@ class DuplicateClips:
         self.matching_frames.sort(key=lambda x: x[0])
 
     def convert_matched_frames_to_clip_list(self):
+        """
+        finding the clips in the matched frames list & separating frames by their difference number
+        [1,2,3, 21,22,23] to [[1,2,3],[21,22,23]] as [[1,3],[21,23]]
+        [6,7,8, 41,42,46] to [[6,7,8],[41,42,46]] as [[6,8],[41,46]]
+        :return: matched frame clips list
+        """
         matched_frame_clips_list = []
         for frame_combo in self.matching_frames:
             new_combo = []
@@ -89,6 +103,15 @@ class DuplicateClips:
         return matched_frame_clips_list
 
     def merge_immediate_matching_frames(self, matched_frame_clips_list):
+        """
+        merging the matched clips list, if the next frame number is close to current one
+        [[1,3],[21,23]
+        [4,6],[25,27]]
+        to
+        [[1,6],[21,27]]
+        :param matched_frame_clips_list: matched frame clips list
+        :return: merged frame clips list
+        """
         if len(matched_frame_clips_list) < 2:
             print("No Matches")
             exit(0)
@@ -114,6 +137,12 @@ class DuplicateClips:
         return merged_frame_clips_list
 
     def convert_merged_frames_to_minutes_format(self, merged_frame_clips_list):
+        """
+        converting the merged frames to minutes format
+        [[1,50],[158,201]] to [['0.0', '0.2],[6.08, 8.01]]
+        :param merged_frame_clips_list: merged frame clips list
+        :return:
+        """
         duplicate_clips_list = []
         for frame_combos in merged_frame_clips_list:
             frames_in_sec = []
