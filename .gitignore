@@ -18,4 +18,6 @@ venv.bak/
 # Sessino Info
 sessions/
 
+# output files
 nohup.out
+output.txt

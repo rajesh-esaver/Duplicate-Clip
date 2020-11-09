@@ -3,7 +3,7 @@ DuplicateClips.py can find the duplicate clips in the video,
  it returns the duplicate clip time info in minutes format(MM:SS).
 
 * running the program in background: \
-nohup python -u DuplicateClips.py 
+nohup python -u DuplicateClips.py > output.txt & 
 
 * To update requirements.txt file with latest pip packages: \
 pip freeze > requirements.txt
