@@ -1,6 +1,7 @@
 from PIL import Image
 import imagehash
 import cv2
+import hashlib
 from datetime import datetime
 
 
@@ -184,8 +185,8 @@ class DuplicateClips:
 
 
 if __name__ == '__main__':
-    video_to_check = "/home/rajesh/Downloads/temp/jab_pandu.mp4"
-    # video_to_check = "/home/rajesh/Downloads/temp/sample-mp4-file_1.mp4"
+    # video_to_check = "/home/rajesh/Downloads/temp/jab_pandu.mp4"
+    video_to_check = "/home/rajesh/Downloads/temp/sample-mp4-file_1.mp4"
     print("Hashing Process Started: {0}".format(get_curr_time()))
     duplicate_clip = DuplicateClips(video_to_check)
     print("Hashing Process Completed: {0}".format(get_curr_time()))
