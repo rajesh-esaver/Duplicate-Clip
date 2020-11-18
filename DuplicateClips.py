@@ -56,7 +56,7 @@ class DuplicateClips:
             # print(type(image))
             image = Image.fromarray(image)
             frame_hash = imagehash.dhash(image)
-            # frame_hash = hashlib.md5(image)
+            # frame_hash = hashlib.md5(image.tobytes())
             if frame_hash in frames_dict:
                 frames_dict[frame_hash].append(frame_count)
             else:
@@ -185,8 +185,9 @@ class DuplicateClips:
 
 
 if __name__ == '__main__':
-    video_to_check = "/home/rajesh/Downloads/temp/jab_pandu.mp4"
-    # video_to_check = "/home/rajesh/Downloads/temp/sample-mp4-file_1.mp4"
+    # video_to_check = "/home/rajesh/Downloads/temp/jab_pandu.mp4"
+    video_to_check = "/home/rajesh/Downloads/temp/sample-mp4-file_1.mp4"
+    # video_to_check = "/home/rajesh/Downloads/temp/vid_test/videoplayback.mp4"
     print("Hashing Process Started: {0}".format(get_curr_time()))
     duplicate_clip = DuplicateClips(video_to_check)
     print("Hashing Process Completed: {0}".format(get_curr_time()))
