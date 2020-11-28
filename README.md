@@ -13,4 +13,5 @@ python 3.7.9 \
 pip 20.2.4 (python 3.7)
 
 #### Note:
-* For processing the large video faster, input the less resolution version of it. 
+* For processing the large video faster, input the less resolution version of it.
+* It may show some clips as duplicates though they are not duplicate(in case if they are closely matching).
